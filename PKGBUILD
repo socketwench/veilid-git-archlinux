@@ -1,4 +1,5 @@
 pkgname=veilid-git
+pkgver=20230813
 pkgrel=1
 pkgdesc="Tools to support Veilid"
 arch=('any')
