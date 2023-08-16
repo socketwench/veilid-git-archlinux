@@ -37,5 +37,8 @@ package() {
     install -Dm644 veilid-git/target/debug/libveilid_core.so "${pkgdir}/usr/lib/libveilid_core.so"
     install -Dm744 veilid-git/target/debug/veilid-cli "${pkgdir}/usr/bin/veilid-cli"
     install -Dm744 veilid-git/target/debug/veilid-server "${pkgdir}/usr/bin/veilid-server"
+    install -Dm744 veilid-git/package/linux/veilid-server.conf "${pkgdir}/etc/veilid-server/veilid-server.conf"
+    install -Dm744 veilid-git/package/systemd/veilid-server.service "${pkgdir}/usr/lib/systemd/system/veilid-server.service"
+    install -d --mode=750 "${pkgdir}/var/db/veilid-server/"
 }
 
