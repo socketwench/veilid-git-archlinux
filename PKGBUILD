@@ -35,10 +35,13 @@ package() {
     cd "$_pkgname"
     install -Dm644 veilid-git/target/debug/libveilid_tools.so "${pkgdir}/usr/lib/libveilid_tools.so"
     install -Dm644 veilid-git/target/debug/libveilid_core.so "${pkgdir}/usr/lib/libveilid_core.so"
-    install -Dm744 veilid-git/target/debug/veilid-cli "${pkgdir}/usr/bin/veilid-cli"
-    install -Dm744 veilid-git/target/debug/veilid-server "${pkgdir}/usr/bin/veilid-server"
+    install -Dm755 veilid-git/target/debug/veilid-cli "${pkgdir}/usr/bin/veilid-cli"
+    install -Dm755 veilid-git/target/debug/veilid-server "${pkgdir}/usr/bin/veilid-server"
     install -Dm744 veilid-git/package/linux/veilid-server.conf "${pkgdir}/etc/veilid-server/veilid-server.conf"
     install -Dm744 veilid-git/package/systemd/veilid-server.service "${pkgdir}/usr/lib/systemd/system/veilid-server.service"
     install -d --mode=750 "${pkgdir}/var/db/veilid-server/"
-}
 
+    sudo groupadd -fr veilid
+    sudo useradd -g veilid -d /var/db/veilid-server -s /usr/bin/nologin -c "Veilid" veilid
+    sudo chown -R veilid:veilid /var/db/veilid-server
+}
