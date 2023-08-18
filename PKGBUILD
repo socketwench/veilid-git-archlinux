@@ -1,10 +1,10 @@
 pkgname=veilid-git
 pkgver=20230813
 pkgrel=1
-pkgdesc="Tools to support Veilid"
-arch=('any')
+pkgdesc="Tools and the backend server for the privacy-focused application framework Veilid"
+arch=('x86_64')
 url="https://gitlab.com/veilid/veilid/"
-license=('Mozilla Public License Version 2.0')
+license=('MPL2')
 depends=('git' 'rust' 'capnproto' 'protobuf')
 
 prepare() {
