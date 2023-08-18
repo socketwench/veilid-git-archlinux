@@ -6,6 +6,8 @@ arch=('x86_64')
 url="https://gitlab.com/veilid/veilid/"
 license=('MPL2')
 depends=('git' 'rust' 'capnproto' 'protobuf')
+source=("systemd-sysusers.conf")
+sha256sums=('21fd31902c990813d8f33258d0bb5ab4a002deeeedb88865982d69124b803031')
 
 prepare() {
     cd "$_pkgname"
@@ -33,6 +35,8 @@ build() {
 
 package() {
     cd "$_pkgname"
+    install -m 755 -d "${pkgdir}/usr/lib/sysusers.d"
+    install -m 644 "${srcdir}/systemd-sysusers.conf" "${pkgdir}/usr/lib/sysusers.d/${pkgname}.conf"
     install -Dm644 veilid-git/target/debug/libveilid_tools.so "${pkgdir}/usr/lib/libveilid_tools.so"
     install -Dm644 veilid-git/target/debug/libveilid_core.so "${pkgdir}/usr/lib/libveilid_core.so"
     install -Dm744 veilid-git/target/debug/veilid-cli "${pkgdir}/usr/bin/veilid-cli"
